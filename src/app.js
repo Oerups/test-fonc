@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const cors = require("cors");
 
-// const databaseConfig = require("./config/database.config");
+const databaseConfig = require("./config/database.config");
 
 const app = express();
 app.use(express.json());
@@ -11,7 +11,7 @@ app.use(cors());
 
 dotenv.config();
 
-// databaseConfig.MongoDB().catch((err) => console.log(err));
+databaseConfig.MongoDB().catch((err) => console.log(err));
 
 app.use("/", () => console.log("Server running"));
 
