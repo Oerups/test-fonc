@@ -24,4 +24,4 @@ app.use("/todolist", todolistRouter);
 app.use("/task", taskRouter);
 app.use("/auth", authRouter);
 
-app.listen(process.env.PORT || 3000, () => console.log("server listening"));
+// app.listen(process.env.PORT || 3000, () => console.log("server listening"));

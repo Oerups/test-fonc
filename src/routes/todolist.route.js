@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const todolistController = require("../controllers/todolist.controller");
-const middlewares = require("../middlewares");
+const middlewares = require("../middlewares/middlewares");
 
 router.get("/", [middlewares.isAuthenticated], todolistController.findAllTodolists);
 router.get("/:id", [middlewares.isAuthenticated], todolistController.findTodolistById);

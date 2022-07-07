@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "cucumber": "cucumber-js --publish-quiet"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^8.4.0"
+  }
+}
