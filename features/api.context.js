@@ -5,11 +5,15 @@ const {
     Then,
     After,
     AfterAll,
+    BeforeAll,
 } = require("@cucumber/cucumber");
 const request = require("supertest");
 const { expect } = require("expect");
 const FixtureManager = require("../fixtures/FixtureManager");
 const ReferenceManager = require("../fixtures/ReferenceManager");
+const db = require("../src/models");
+
+let session;
 
 function interpolate(text) {
     return text.replace(/\{\{([^}]+)\}\}/g, (match, key) => {
@@ -17,15 +21,19 @@ function interpolate(text) {
     });
 }
 
-Before(function () {
+Before(async function () {
     this.client = request(require("../src/app"));
+    // start transaction
+    session = await db.connection.startSession();
+    session.startTransaction();
 });
 
-After(function () {});
-
-AfterAll(function () {
-    //connection.close();
+After(function () {
+    session.abortTransaction();
+    session.endSession();
 });
+
+AfterAll(function () {});
 
 Given("I have a payload", function (dataTable) {
     // Write code here that turns the phrase above into concrete actions
@@ -33,7 +41,7 @@ Given("I have a payload", function (dataTable) {
 });
 Given("I load {string}", async function (string) {
     // Write code here that turns the phrase above into concrete actions
-    await FixtureManager.load(string);
+    await FixtureManager.load(string, session);
 });
 
 When("I call {string} {string} with the payload", async function (method, url) {
@@ -74,6 +82,15 @@ Then("I should get an empty array", function () {
     expect(this.response.body).toEqual([]);
 });
 
+Then("I should get an array", function () {
+    // Write code here that turns the phrase above into concrete actions
+    expect(this.response.body).toEqual([{}]);
+});
+
 Given("I have no resources", function () {
+    // Write code here that turns the phrase above into concrete actions
+});
+
+Given("I have a resource", function () {
     // Write code here that turns the phrase above into concrete actions
 });

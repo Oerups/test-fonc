@@ -27,10 +27,7 @@ const todolistController = {
     // Get todolists by id
     findTodolistById: async (req, res, next) => {
         try {
-            const todolist = await todolistService.findByIdAndUserId(
-                req.params.id,
-                req.user.id
-            );
+            const todolist = await todolistService.findById(req.params.id);
 
             if (!todolist) {
                 return res.status(404).json({
@@ -62,6 +59,8 @@ const todolistController = {
                 req.params.id,
                 req.body
             );
+
+            console.log(todolist);
 
             if (!todolist) {
                 return res.status(404).json({
