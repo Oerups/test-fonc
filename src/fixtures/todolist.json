@@ -1,0 +1,18 @@
+{
+  "model": "Todolist",
+  "data": {
+    "todolist": {
+      "name": "Todolist 1",
+      "tasks": [
+        {
+          "done": true,
+          "content": "content 1",
+        },
+        {
+          "done": false,
+          "content": "content 2",
+        },
+      ],
+    }
+  }
+}

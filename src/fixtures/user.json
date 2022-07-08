@@ -1,0 +1,17 @@
+{
+  "model": "User",
+  "data": {
+    "admin": {
+      "username": "user 1",
+      "email": "user1@test.fr",
+      "password": "password",
+       "role": "ROLE_ADMIN"
+    },
+    "user": {
+      "username": "user 2",
+      "email": "user2@test.fr",
+      "password": "password",
+       "role": "ROLE_USER"
+    }
+  }
+}
