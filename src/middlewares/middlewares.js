@@ -1,9 +1,13 @@
 const jwtService = require("../services/jwt.service");
-const todolistService = require('../services/todolist.service');
+const todolistService = require("../services/todolist.service");
 
 const middlewares = {
     isAuthenticated: async (req, res, next) => {
-        const user = await jwtService._decodeToken(req.headers.authorization ?? null);
+        const user = await jwtService._decodeToken(
+            req.headers.authorization ?? null
+        );
+
+        console.log(user);
 
         if (user) {
             req.user = user;
@@ -15,7 +19,10 @@ const middlewares = {
     isOwned: async (req, res, next) => {
         const { todolist_id } = req.params;
         const { id } = req.user;
-        const todolist = await todolistService.findByIdAndUserId(todolist_id, id);
+        const todolist = await todolistService.findByIdAndUserId(
+            todolist_id,
+            id
+        );
 
         if (!todolist) {
             return res.status(404).json({ message: "Todolist not found" });

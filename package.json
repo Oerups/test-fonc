@@ -7,14 +7,13 @@
     "test": "jest",
     "dev": "nodemon src/app.js",
     "start": "nodemon src/index.js",
-     "cucumber": "cucumber-js --publish-quiet"
+    "cucumber": "cucumber-js --publish-quiet"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "cucumber": "^6.0.7",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-validator": "^6.14.0",

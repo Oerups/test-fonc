@@ -1,3 +1,5 @@
+const references = {};
+
 const referenceManager = {
     setReference: (key, value) => {
         references[key] = value;

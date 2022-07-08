@@ -18,7 +18,7 @@ function interpolate(text) {
 }
 
 Before(function () {
-    this.client = request(require("../../src/app"));
+    this.client = request(require("../src/app"));
 });
 
 After(function () {});

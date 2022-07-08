@@ -1,10 +1,22 @@
 const todolistService = require("../services/todolist.service");
 
 const todolistController = {
+    all: async (req, res, next) => {
+        try {
+            const todolists = await todolistService.all();
+
+            res.status(200).json(todolists);
+        } catch (error) {
+            next(error);
+        }
+    },
+
     // Get all todolists
     findAllTodolists: async (req, res, next) => {
         try {
-            const todolists = await todolistService.findAllByUserId(req.user.id);
+            const todolists = await todolistService.findAllByUserId(
+                req.user.id
+            );
 
             res.status(200).json(todolists);
         } catch (error) {
@@ -15,7 +27,10 @@ const todolistController = {
     // Get todolists by id
     findTodolistById: async (req, res, next) => {
         try {
-            const todolist = await todolistService.findByIdAndUserId(req.params.id, req.user.id);
+            const todolist = await todolistService.findByIdAndUserId(
+                req.params.id,
+                req.user.id
+            );
 
             if (!todolist) {
                 return res.status(404).json({
@@ -43,7 +58,10 @@ const todolistController = {
     // Update todolists by id
     updateTodolist: async (req, res, next) => {
         try {
-            const todolist = await todolistService.update(req.params.id, req.body);
+            const todolist = await todolistService.update(
+                req.params.id,
+                req.body
+            );
 
             if (!todolist) {
                 return res.status(404).json({

@@ -1,5 +1,6 @@
-const db = require("../../src/config/database.config");
+const db = require("../src/models");
 const path = require("path");
+const ReferenceManager = require("../fixtures/ReferenceManager");
 
 const fixtureMangager = {
     load: async function (file) {
